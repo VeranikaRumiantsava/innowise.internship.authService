@@ -25,7 +25,6 @@ public class JwtUtil {
 
     @PostConstruct
     public void init() {
-        // decode base64 string и получить Key для HMAC
         byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
         secretKey = Keys.hmacShaKeyFor(keyBytes);
     }
