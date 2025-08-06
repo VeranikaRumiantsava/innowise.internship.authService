@@ -1,0 +1,49 @@
+services:
+  app:
+    image: auth_service:latest
+    build: .
+    ports:
+      - "8082:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+#      redis:
+#        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: rumronya
+      DB_PASSWORD: password
+#      REDIS_HOST: redis
+#      REDIS_PORT: 6379
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: auth
+      POSTGRES_USER: rumronya
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U rumronya" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+#  redis:
+#    image: redis:7
+#    container_name: user-redis
+#    ports:
+#      - "6379:6379"
+#    restart: always
+#    healthcheck:
+#      test: [ "CMD", "redis-cli", "ping" ]
+#      interval: 5s
+#      timeout: 3s
+#      retries: 5
+
+volumes:
+  pgdata:
