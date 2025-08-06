@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 
         return buildErrorResponse(List.of(
                         ex.getMessage()),
-                HttpStatus.BAD_REQUEST,
+                HttpStatus.CONFLICT,
                 "User already exists");
     }
 
