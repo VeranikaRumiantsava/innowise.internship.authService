@@ -1,6 +1,7 @@
 package org.innowise.internship.authenticationservice.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,7 @@ public class RegisterRequestDTO {
 
     @NotBlank
     private String password;
+
+    @NotNull
+    private Long idUser;
 }

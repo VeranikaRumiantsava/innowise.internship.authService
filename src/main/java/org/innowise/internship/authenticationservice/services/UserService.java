@@ -38,7 +38,7 @@ public class UserService {
         User user = new User();
         user.setLogin(registerRequestDTO.getLogin());
         user.setPassword(encodedPassword);
-        user.setForeignUserid(2L);
+        user.setForeignUserid(registerRequestDTO.getIdUser());
         userRepository.save(user);
         return "User created successfully";
     }
