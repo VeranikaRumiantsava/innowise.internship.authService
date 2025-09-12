@@ -51,6 +51,7 @@ class UserServiceTest {
         RegisterRequestDTO registerRequestDTO = new RegisterRequestDTO();
         registerRequestDTO.setLogin("user");
         registerRequestDTO.setPassword("password");
+        registerRequestDTO.setIdUser(2L);
 
         Mockito.when(userRepository.findByLogin("user")).thenReturn(Optional.empty());
         Mockito.when(passwordEncoder.encode("password")).thenReturn("encodedpassword");
@@ -70,6 +71,7 @@ class UserServiceTest {
         RegisterRequestDTO registerRequestDTO = new RegisterRequestDTO();
         registerRequestDTO.setLogin("user");
         registerRequestDTO.setPassword("password");
+        registerRequestDTO.setIdUser(2L);
 
         Mockito.when(userRepository.findByLogin("user"))
                 .thenReturn(Optional.of(new User()));

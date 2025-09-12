@@ -28,6 +28,7 @@ public class AuthenticationControllerIT extends BaseIT {
         RegisterRequestDTO registerRequestDTO = new RegisterRequestDTO();
         registerRequestDTO.setLogin("user");
         registerRequestDTO.setPassword("password");
+        registerRequestDTO.setIdUser(2L);
 
         mockMvc.perform(post("/api/v1/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -41,6 +42,7 @@ public class AuthenticationControllerIT extends BaseIT {
         RegisterRequestDTO registerRequestDTO = new RegisterRequestDTO();
         registerRequestDTO.setLogin("user");
         registerRequestDTO.setPassword("password");
+        registerRequestDTO.setIdUser(2L);
 
         mockMvc.perform(post("/api/v1/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -59,6 +61,7 @@ public class AuthenticationControllerIT extends BaseIT {
         RegisterRequestDTO registerRequestDTO = new RegisterRequestDTO();
         registerRequestDTO.setLogin("user");
         registerRequestDTO.setPassword("");
+        registerRequestDTO.setIdUser(2L);
 
         mockMvc.perform(post("/api/v1/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
