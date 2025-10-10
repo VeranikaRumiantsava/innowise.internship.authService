@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.21.xsd">
+    <changeSet id="create_tables_users_23-07-2025" author="veronika-rumiantsava">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false"
+                             primaryKey="true"
+                />
+            </column>
+            <column name="login" type="varchar(100)">
+                <constraints nullable="false"
+                />
+            </column>
+            <column name="password" type="varchar(150)">
+                <constraints nullable="false"
+                />
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add_constraint_unique_login_24-07-2025" author="veronika-rumiantsava">
+        <addUniqueConstraint constraintName="cst_login_unique" tableName="users" columnNames="login"/>
+
+        <rollback>
+            <dropUniqueConstraint tableName="users" constraintName="cst_login_unique" />
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add_column_foreignUserId_04-08-2025" author="veronika-rumiantsava">
+        <addColumn tableName="users">
+            <column name="foreign_userId" type="bigint">
+                <constraints nullable="false"
+                             unique="true"
+                />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="users" columnName="foreign_userId" />
+        </rollback>
+    </changeSet>
+
+    <changeSet id="rename_column_foreign_userId_to_ foreign_user_id_04-08-2025" author="veronika-rumiantsava">
+        <renameColumn tableName="users" oldColumnName="foreign_userId" newColumnName="foreign_user_id" />
+    </changeSet>
+</databaseChangeLog>
